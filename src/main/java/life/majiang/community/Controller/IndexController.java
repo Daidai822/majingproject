@@ -26,7 +26,7 @@ public class IndexController {
 
         // 验证之前是否登录过
         // 如果登录过,根据token从数据库中取出来对应的user
-        // 如果之前没有登录过,则到 /callback 存入cookie
+        // 如果之前没有登录过,则到 /callback 页面 存入cookie
         // 然后将user存入到Session中
         if(cookies != null){
             for (Cookie cookie : cookies){
@@ -34,7 +34,10 @@ public class IndexController {
                     String token = cookie.getValue();
                     User user = userMapper.findByToken(token);
                     if(user != null){
-                        // 这样就实现了持久化登录
+                        // 这样就实现了持久化登录  给服务器存入用户的数据
+                        // 给服务器存入数据
+                        // 请求：浏览器端请求服务器端
+                        // 逻辑：request请求获取Session，设置Session的值
                         request.getSession().setAttribute("user",user);
                     }
                     break;

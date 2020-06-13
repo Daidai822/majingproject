@@ -69,6 +69,7 @@ public class AuthorizeController {
             userMapper.insert(user);
             // 登录成功 cookie
             // 第一次登录,存入Cookie
+            // cookie存入到浏览器端，所以要响应回去
             response.addCookie(new Cookie("token",token));
             return "redirect:/";
         } else {
